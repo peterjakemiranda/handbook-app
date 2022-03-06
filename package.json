@@ -5,9 +5,6 @@
   "productName": "Handbook App",
   "author": "peter",
   "private": true,
-  "engines": {
-    "node": "16.x"
-  },
   "scripts": {
     "build": "quasar build",
     "lint": "eslint --ext .js,.vue ./",
@@ -41,7 +38,7 @@
     "last 5 Opera versions"
   ],
   "engines": {
-    "node": ">= 12.22.1",
+    "node": "16.x",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
   }
