@@ -5,6 +5,9 @@
   "productName": "Handbook App",
   "author": "peter",
   "private": true,
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "build": "quasar build",
     "lint": "eslint --ext .js,.vue ./",
