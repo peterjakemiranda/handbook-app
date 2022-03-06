@@ -6,8 +6,10 @@
   "author": "peter",
   "private": true,
   "scripts": {
+    "build": "quasar build",
     "lint": "eslint --ext .js,.vue ./",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "heroku-postbuild": "yarn run build"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

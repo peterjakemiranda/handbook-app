@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lff">
     <q-header class="q-pb-sm">
-      <q-img class="absolute-top" :src="bgImage" style="height: 108px" />
+      <q-img class="absolute-top" :src="mainHeaderImg" style="height: 108px" />
       <q-toolbar>
         <q-btn
           flat
@@ -67,7 +67,7 @@
         </q-list>
       </q-scroll-area>
 
-      <q-img class="absolute-top" :src="bgImage" style="height: 108px">
+      <q-img class="absolute-top" :src="sideHeaderImg" style="height: 108px">
         <div
           class="
             absolute-bottom
@@ -100,7 +100,8 @@
 <script>
 import { defineComponent, ref } from "vue";
 import { mapGetters, mapMutations } from "vuex";
-import bgImage from "../assets/5559852.jpg";
+import mainHeaderImg from "../assets/main-header.png";
+import sideHeaderImg from "../assets/5559852.jpg";
 import logoImage from "../assets/sdssu_logo.png";
 import studentImage from "../assets/student.png";
 import authService from "./../services/auth";
@@ -110,7 +111,8 @@ export default defineComponent({
   name: "MainLayout",
   data() {
     return {
-      bgImage,
+      mainHeaderImg,
+      sideHeaderImg,
       logoImage,
       studentImage,
       searchText: "",
