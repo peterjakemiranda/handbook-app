@@ -7,7 +7,7 @@
           filled
           v-model="student_id"
           label="Student ID"
-          disable
+          :disable="!student_id"
         />
         <q-input
           filled
@@ -80,6 +80,7 @@ export default defineComponent({
     onSubmit() {
       accountService
         .update({
+          student_id: this.student_id,
           first_name: this.first_name,
           last_name: this.last_name,
           email: this.email,
