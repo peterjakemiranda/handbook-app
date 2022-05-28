@@ -7,7 +7,6 @@
           filled
           v-model="student_id"
           label="Student ID"
-          :disable="!!student_id"
         />
         <q-input
           filled
