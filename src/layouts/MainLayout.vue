@@ -83,9 +83,7 @@
           </q-avatar>
           <div class="text-weight-bold" v-if="account">
             <span>{{ account.first_name }} {{ account.last_name }}</span>
-            <span class="block text-weight-normal" style="font-size: 9px">{{
-              account.email
-            }}</span>
+            <span class="block text-weight-normal" style="font-size: 9px">{{account.student_id }} | {{account.email}}</span>
           </div>
         </div>
       </q-img>

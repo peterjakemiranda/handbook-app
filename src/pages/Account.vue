@@ -5,6 +5,12 @@
       <q-form @submit="onSubmit" class="q-gutter-md">
         <q-input
           filled
+          v-model="student_id"
+          label="Student ID"
+          disable
+        />
+        <q-input
+          filled
           v-model="first_name"
           label="First name *"
           lazy-rules
@@ -52,6 +58,7 @@ export default defineComponent({
   name: "Account",
   data() {
     return {
+      student_id: "",
       first_name: "",
       last_name: "",
       email: "",
@@ -100,6 +107,7 @@ export default defineComponent({
       immediate: true,
       handler(data) {
         if (!data) return;
+        this.student_id = data.student_id;
         this.first_name = data.first_name;
         this.last_name = data.last_name;
         this.email = data.email;
