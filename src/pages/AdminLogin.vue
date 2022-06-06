@@ -76,12 +76,6 @@
                   </template>
                 </q-input>
               </q-form>
-              <q-btn
-                flat
-                class="text-grey-1 text-capitalize q-pa-sm q-mb-sm"
-                label="Login as Student"
-                to="/login"
-              />
             </q-card-section>
             <q-card-actions class="q-px-lg">
               <q-btn
@@ -92,6 +86,12 @@
                 color="dark"
                 class="full-width"
                 label="Sign In"
+              />
+              <q-btn
+                flat
+                class="text-grey-1 text-capitalize q-mt-sm"
+                label="Login as Student"
+                to="/login"
               />
             </q-card-actions>
             <q-card-section class="text-center q-pa-lg">
