@@ -30,7 +30,7 @@
                 class="text-body2 text-center text-red-3"
                 v-if="invalidCredentials"
               >
-                Invalid username or password!
+                Invalid combination of student id, email or password!
               </div>
               <q-form class="q-px-sm q-pt-xs">
                 <q-input
