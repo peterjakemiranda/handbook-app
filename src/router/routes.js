@@ -69,6 +69,13 @@ const routes = [
     },
   },
   {
+    path: "/admin-login",
+    component: () => import("pages/AdminLogin.vue"),
+    meta: {
+      guest: true,
+    },
+  },
+  {
     path: "/register",
     component: () => import("pages/Register.vue"),
     meta: {

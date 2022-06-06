@@ -24,6 +24,9 @@
               <div class="text-h5 text-center q-mb-md text-weight-bold">
                 Student Handbook
               </div>
+              <div class="text-subtitle text-center q-mb-md text-weight-bold">
+                Student Handbook
+              </div>
             </div>
             <q-card-section>
               <div
@@ -33,23 +36,6 @@
                 Invalid username or password!
               </div>
               <q-form class="q-px-sm q-pt-xs">
-                <q-input
-                  square
-                  clearable
-                  dark
-                  color="white"
-                  v-model="student_id"
-                  type="text"
-                  label="Student ID"
-                  lazy-rules
-                  :rules="[
-                    (val) => (val && val.length > 0) || 'Student ID is required',
-                  ]"
-                >
-                  <template v-slot:prepend>
-                    <q-icon name="portrait" color="white" />
-                  </template>
-                </q-input>
                 <q-input
                   square
                   clearable
@@ -90,6 +76,12 @@
                   </template>
                 </q-input>
               </q-form>
+              <q-btn
+                flat
+                class="text-grey-1 text-capitalize q-pa-sm q-mb-sm"
+                label="Login as Student"
+                to="/login"
+              />
             </q-card-section>
             <q-card-actions class="q-px-lg">
               <q-btn
@@ -100,12 +92,6 @@
                 color="dark"
                 class="full-width"
                 label="Sign In"
-              />
-              <q-btn
-                flat
-                class="text-grey-1 text-capitalize q-mt-sm"
-                label="Login as Admin"
-                to="/admin-login"
               />
             </q-card-actions>
             <q-card-section class="text-center q-pa-lg">
@@ -136,13 +122,12 @@ import authService from "./../services/auth";
 import logoImage from "../assets/sdssu_logo.png";
 
 export default defineComponent({
-  name: "Login",
+  name: "AdminLogin",
   data() {
     return {
       logoImage,
       loading: false,
       isPwd: true,
-      student_id: "",
       email: "",
       password: "",
       invalidCredentials: false,
@@ -152,7 +137,7 @@ export default defineComponent({
     onSubmit() {
       this.loading = true;
       authService
-        .login({ student_id: this.student_id, email: this.email, password: this.password })
+        .login({ email: this.email, password: this.password })
         .then(() => {
           this.loading = false;
         })
