@@ -12,7 +12,7 @@ import { router } from "../router";
 // for each client)
 store.dispatch("checkAuthentication");
 
-axios.defaults.baseURL = "https://handbookapp.herokuapp.com";
+axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.headers.common.Accept = "application/json";
 
 const logoutErrors = [

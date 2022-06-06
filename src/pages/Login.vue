@@ -38,6 +38,23 @@
                   clearable
                   dark
                   color="white"
+                  v-model="student_id"
+                  type="text"
+                  label="Student ID"
+                  lazy-rules
+                  :rules="[
+                    (val) => (val && val.length > 0) || 'Student ID is required',
+                  ]"
+                >
+                  <template v-slot:prepend>
+                    <q-icon name="portrait" color="white" />
+                  </template>
+                </q-input>
+                <q-input
+                  square
+                  clearable
+                  dark
+                  color="white"
                   v-model="email"
                   type="email"
                   label="Email"
@@ -119,6 +136,7 @@ export default defineComponent({
       logoImage,
       loading: false,
       isPwd: true,
+      student_id: "",
       email: "",
       password: "",
       invalidCredentials: false,
@@ -128,7 +146,7 @@ export default defineComponent({
     onSubmit() {
       this.loading = true;
       authService
-        .login({ email: this.email, password: this.password })
+        .login({ student_id: this.student_id, email: this.email, password: this.password })
         .then(() => {
           this.loading = false;
         })
