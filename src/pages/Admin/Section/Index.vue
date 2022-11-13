@@ -12,7 +12,7 @@
         <q-breadcrumbs-el
           to="/admin/chapters"
           icon="keyboard_arrow_left"
-          label="All Articles"
+          label="All Chapters"
         />
         <q-breadcrumbs-el
           icon="local_library"

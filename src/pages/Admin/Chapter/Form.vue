@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <div class="text-h5 q-py-md">{{ id ? "Update" : "Create" }} Article</div>
+    <div class="text-h5 q-py-md">{{ id ? "Update" : "Create" }} Chapter</div>
 
     <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
       <q-input

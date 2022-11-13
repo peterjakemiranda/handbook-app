@@ -12,6 +12,10 @@ export const getAccount = ({ commit }, account) => {
   commit(types.GET_ACCOUNT, account);
 };
 
+export const fetchUsers = ({ commit }, { users, pagination }) => {
+  commit(types.FETCH_USERS, { users, pagination });
+};
+
 // Auth
 export const login = ({ commit }, tokenData) => {
   commit(types.LOGIN, tokenData);
@@ -66,6 +70,31 @@ export const setSectionQuery = ({ commit }, { page, limit, search }) => {
 
 export const updateSection = ({ commit }, payload) => {
   commit(types.UPDATE_SECTION, payload);
+};
+
+// Questions
+export const fetchQuestions = ({ commit }, { questions, pagination }) => {
+  commit(types.FETCH_QUESTIONS, { questions, pagination });
+};
+
+export const fetchAllQuestions = ({ commit }, questions) => {
+  commit(types.FETCH_ALL_QUESTIONS, questions);
+};
+
+export const fetchQuestionSearchResults = ({ commit }, questions) => {
+  commit(types.FETCH_SEARCH_RESULTS, questions);
+};
+
+export const resetQuestions = ({ commit }) => {
+  commit(types.RESET_QUESTIONS);
+};
+
+export const setQuestionQuery = ({ commit }, { page, limit, search }) => {
+  commit(types.QUESTION_QUERY, { page, limit, search });
+};
+
+export const updateQuestion = ({ commit }, payload) => {
+  commit(types.UPDATE_QUESTION, payload);
 };
 
 // Bookmark

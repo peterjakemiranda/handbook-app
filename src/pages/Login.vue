@@ -8,7 +8,7 @@
         items-center
         text-white
       "
-      style="background: linear-gradient(#0470d9, #1f8fff)"
+      :style="`background: url(${bgImage}) center no-repeat;background-size:cover`"
     >
       <div class="column q-pa-lg">
         <div class="row">
@@ -30,7 +30,7 @@
                 class="text-body2 text-center text-red-3"
                 v-if="invalidCredentials"
               >
-                Invalid combination of student id, email or password!
+                Invalid student id or password!
               </div>
               <q-form class="q-px-sm q-pt-xs">
                 <q-input
@@ -41,23 +41,6 @@
                   v-model="student_id"
                   type="text"
                   label="Student ID"
-                  lazy-rules
-                  :rules="[
-                    (val) => (val && val.length > 0) || 'Student ID is required',
-                  ]"
-                >
-                  <template v-slot:prepend>
-                    <q-icon name="portrait" color="white" />
-                  </template>
-                </q-input>
-                <q-input
-                  square
-                  clearable
-                  dark
-                  color="white"
-                  v-model="email"
-                  type="email"
-                  label="Email"
                   lazy-rules
                   :rules="[
                     (val) => (val && val.length > 0) || 'Email is required',
@@ -101,28 +84,7 @@
                 class="full-width"
                 label="Sign In"
               />
-              <q-btn
-                flat
-                class="text-grey-1 text-capitalize q-mt-sm"
-                label="Login as Admin"
-                to="/admin-login"
-              />
             </q-card-actions>
-            <q-card-section class="text-center q-pa-lg">
-              <q-btn
-                flat
-                class="text-grey-1 text-capitalize q-pa-sm q-mb-sm"
-                label="Forgot your password?"
-                to="/forgot-password"
-              />
-              <q-separator />
-              <q-btn
-                to="/register"
-                flat
-                class="text-grey-1 text-capitalize text-bold q-mt-sm"
-                label="No Account yet? Register Now"
-              />
-            </q-card-section>
           </q-card>
         </div>
       </div>
@@ -133,13 +95,15 @@
 <script>
 import { defineComponent } from "vue";
 import authService from "./../services/auth";
-import logoImage from "../assets/sdssu_logo.png";
+import logoImage from "../assets/bago-logo.png";
+import bgImage from "../assets/bago-bg.png";
 
 export default defineComponent({
   name: "Login",
   data() {
     return {
       logoImage,
+      bgImage,
       loading: false,
       isPwd: true,
       student_id: "",
@@ -152,7 +116,7 @@ export default defineComponent({
     onSubmit() {
       this.loading = true;
       authService
-        .login({ student_id: this.student_id, email: this.email, password: this.password })
+        .login({ student_id: this.student_id, password: this.password })
         .then(() => {
           this.loading = false;
         })

@@ -49,13 +49,20 @@
 
             <q-item-section> Administration </q-item-section>
           </q-item>
-          <q-item to="/account" v-ripple exact>
+          <q-item to="/admin/users" v-ripple exact v-if="isAdmin">
+            <q-item-section avatar>
+              <q-icon name="people" />
+            </q-item-section>
+
+            <q-item-section> Manage Accounts </q-item-section>
+          </q-item>
+          <!-- <q-item to="/account" v-ripple exact>
             <q-item-section avatar>
               <q-icon name="person" />
             </q-item-section>
 
             <q-item-section> My Account </q-item-section>
-          </q-item>
+          </q-item> -->
 
           <q-item clickable v-ripple exact>
             <q-item-section avatar>
@@ -83,7 +90,7 @@
           </q-avatar>
           <div class="text-weight-bold" v-if="account">
             <span>{{ account.first_name }} {{ account.last_name }}</span>
-            <span class="block text-weight-normal" style="font-size: 9px">{{account.student_id }} | {{account.email}}</span>
+            <span class="block text-weight-normal" style="font-size: 9px">{{account.student_id }}</span>
           </div>
         </div>
       </q-img>
@@ -98,9 +105,9 @@
 <script>
 import { defineComponent, ref } from "vue";
 import { mapGetters, mapMutations } from "vuex";
-import mainHeaderImg from "../assets/main-header.png";
-import sideHeaderImg from "../assets/5559852.jpg";
-import logoImage from "../assets/sdssu_logo.png";
+import mainHeaderImg from "../assets/main-header.jpg";
+import sideHeaderImg from "../assets/main-header.jpg";
+import logoImage from "../assets/bago-logo.png";
 import studentImage from "../assets/student.png";
 import authService from "./../services/auth";
 import accountService from "./../services/account";

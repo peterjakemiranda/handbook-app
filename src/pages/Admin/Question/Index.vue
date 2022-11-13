@@ -1,17 +1,43 @@
 <template>
   <div class="q-pa-md q-gutter-md">
-    <h4 class="text-h4 q-mb-xs">Chapters</h4>
+    <q-page-sticky
+      expand
+      position="top-left"
+      class="full-width"
+      style="z-index: 1"
+    >
+      <q-breadcrumbs
+        class="text-grey bg-white full-width q-px-lg q-py-sm text-body1"
+      >
+        <q-breadcrumbs-el
+          to="/admin/chapters"
+          icon="keyboard_arrow_left"
+          label="All Chapters"
+        />
+        <q-breadcrumbs-el
+          icon="local_library"
+          :label="`${currentChapter.title} Questions`"
+          v-if="currentChapter"
+        />
+      </q-breadcrumbs>
+    </q-page-sticky>
+    <div
+      class="text-h5 q-mb-md"
+      style="padding-top: 48px"
+      v-if="currentChapter"
+    >
+      {{ currentChapter.title }}
+    </div>
     <q-btn
-      :to="`/admin/chapters/create`"
+      :to="`/admin/chapters/${$route.params.chapter_id}/questions/create`"
       color="primary"
       icon="add"
-      label="Create Chapter"
+      label="Create Question"
     />
     <q-list padding>
-      <q-item v-ripple v-for="chapter in chapters" :key="chapter.id">
+      <q-item v-ripple v-for="question in questions" :key="question.id" class="full-width">
         <q-item-section>
-          <q-item-label lines="1">{{ chapter.title }}</q-item-label>
-          <q-item-label caption>{{ chapter.description }}</q-item-label>
+          <q-item-label lines="1">{{ question.question }}</q-item-label>
         </q-item-section>
         <q-item-section side>
           <div class="q-gutter-sm">
@@ -19,32 +45,8 @@
               flat
               round
               size="12px"
-              color="primary"
-              icon="list"
-              :to="`/admin/chapters/${chapter.id}/sections`"
-            >
-              <q-tooltip anchor="top middle" self="bottom middle">
-                Manage Sections
-              </q-tooltip>
-            </q-btn>
-            <q-btn
-              flat
-              round
-              size="12px"
-              color="primary"
-              icon="quiz"
-              :to="`/admin/chapters/${chapter.id}/questions`"
-            >
-              <q-tooltip anchor="top middle" self="bottom middle">
-                Manage Questions
-              </q-tooltip>
-            </q-btn>
-            <q-btn
-              flat
-              round
-              size="12px"
               icon="edit"
-              :to="`/admin/chapters/${chapter.id}/edit`"
+              :to="`/admin/chapters/${$route.params.chapter_id}/questions/${question.id}/edit`"
             >
               <q-tooltip anchor="top middle" self="bottom middle">
                 Edit
@@ -55,7 +57,7 @@
               round
               size="12px"
               icon="delete"
-              @click="remove(chapter)"
+              @click.prevent="remove(question)"
             >
               <q-tooltip anchor="top middle" self="bottom middle">
                 Delete
@@ -71,24 +73,29 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import { defineComponent } from "vue";
-import chapterService from "../../../services/chapter";
+import questionService from "../../../services/question";
 
 export default defineComponent({
-  name: "AdminChapterIndex",
+  name: "AdminQuestionIndex",
   data() {
     return {
       title: "",
-      description: "",
     };
   },
   computed: {
     ...mapGetters({
       chapters: "allChapters",
+      questions: "allQuestions",
     }),
+    currentChapter() {
+      return this.chapters.find(
+        (c) => +c.id === +this.$route.params.chapter_id
+      );
+    },
   },
   mounted() {
-    chapterService
-      .all()
+    questionService
+      .all(this.$route.params.chapter_id)
       .then((data) => {
         this.loading = false;
       })
@@ -98,17 +105,17 @@ export default defineComponent({
   },
   methods: {
     onReset() {},
-    remove(chapter) {
+    remove(question) {
       this.$q
         .dialog({
           title: "Confirm",
-          message: "Are you sure to delete this chapter?",
+          message: "Are you sure to delete this question?",
           cancel: true,
           persistent: true,
         })
         .onOk(() => {
-          chapterService
-            .destroy(chapter.id)
+          questionService
+            .destroy(question.id, question.chapter_id)
             .then((data) => {
               this.loading = false;
             })

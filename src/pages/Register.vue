@@ -162,7 +162,7 @@
 <script>
 import { defineComponent } from "vue";
 import authService from "./../services/auth";
-import logoImage from "../assets/sdssu_logo.png";
+import logoImage from "../assets/bago-logo.png";
 
 export default defineComponent({
   name: "Register",

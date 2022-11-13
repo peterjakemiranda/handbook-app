@@ -56,6 +56,43 @@ const routes = [
         path: "admin/chapters/:chapter_id/sections/:id/edit",
         component: () => import("src/pages/Admin/Section/Form.vue"),
       },
+
+      {
+        path: "admin/chapters/:chapter_id/questions",
+        component: () => import("src/pages/Admin/Question/Index.vue"),
+      },
+      {
+        path: "admin/chapters/:chapter_id/questions/create",
+        component: () => import("src/pages/Admin/Question/Form.vue"),
+      },
+      {
+        path: "admin/chapters/:chapter_id/questions/:id/edit",
+        component: () => import("src/pages/Admin/Question/Form.vue"),
+      },
+      {
+        path: "admin/users",
+        component: () => import("src/pages/Admin/User/Index.vue"),
+        meta: {
+          auth: true,
+          authorize: [Role.Admin],
+        },
+      },
+      {
+        path: "admin/users/create",
+        component: () => import("src/pages/Admin/User/Form.vue"),
+        meta: {
+          auth: true,
+          authorize: [Role.Admin],
+        },
+      },
+      {
+        path: "admin/users/:id/edit",
+        component: () => import("src/pages/Admin/User/Form.vue"),
+        meta: {
+          auth: true,
+          authorize: [Role.Admin],
+        },
+      },
     ],
     meta: {
       auth: true,

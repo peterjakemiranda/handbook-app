@@ -19,10 +19,10 @@ const failed = (error, reject) => {
   return reject(error.response.data);
 };
 
-export default (user) =>
+export default (user, id = null) =>
   new Promise((resolve, reject) => {
     axios
-      .put("api/account", user)
+      .put(id ? `api/account/${id}` : "api/account", user)
       .then((response) => {
         success(response.data, resolve);
       })

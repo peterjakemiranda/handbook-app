@@ -7,6 +7,7 @@ import profile from "./modules/profile";
 import auth from "./modules/auth";
 import chapter from "./modules/chapter";
 import section from "./modules/section";
+import question from "./modules/question";
 import bookmark from "./modules/bookmark";
 
 const debug = process.env.NODE_ENV !== "production";
@@ -29,6 +30,7 @@ const store = createStore({
     auth,
     chapter,
     section,
+    question,
     bookmark,
   },
 

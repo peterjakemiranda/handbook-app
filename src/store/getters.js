@@ -17,6 +17,10 @@ export const isInMaintenance = (state) => state.auth.maintenance;
 
 // Profile
 export const account = (state) => state.profile.account;
+export const allUsers = (state) => ({
+  items: state.profile.items,
+  pagination: state.profile.pagination,
+});
 
 // Chapters
 export const chapters = (state) => ({
@@ -34,6 +38,15 @@ export const sections = (state) => ({
 export const allSections = (state) => state.section.all;
 export const searchResults = (state) => state.section.searchResults;
 export const sectionQuery = (state) => state.section.query;
+
+// Sections
+export const questions = (state) => ({
+  items: state.question.items,
+  pagination: state.question.pagination,
+});
+export const allQuestions = (state) => state.question.all;
+export const questionSearchResults = (state) => state.question.searchResults;
+export const questionQuery = (state) => state.question.query;
 
 // Bookmarks
 export const allBookmarks = (state) => state.bookmark.all;

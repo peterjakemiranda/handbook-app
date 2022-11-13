@@ -139,7 +139,7 @@ module.exports = configure(function (ctx) {
       manifest: {
         name: `Handbook App`,
         short_name: `Handbook App`,
-        description: `SDSSU Handbook App`,
+        description: `Bago City College Handbook App`,
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",
