@@ -147,8 +147,9 @@ export default defineComponent({
       questionService
         .update(this.id, {
           question: this.question,
-          content: this.content,
+          answer: this.answer,
           chapter_id: this.chapter.value,
+          options: JSON.stringify(this.choices),
         })
         .then((data) => {
           this.loading = false;

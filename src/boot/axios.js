@@ -12,7 +12,7 @@ import { router } from "../router";
 // for each client)
 store.dispatch("checkAuthentication");
 
-axios.defaults.baseURL = "http://localhost:8001";
+axios.defaults.baseURL = "http://handbook-api.local";
 axios.defaults.headers.common.Accept = "application/json";
 
 const logoutErrors = [

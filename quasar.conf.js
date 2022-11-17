@@ -137,8 +137,8 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: `Handbook App`,
-        short_name: `Handbook App`,
+        name: `Bago City College Handbook`,
+        short_name: `Bago City College Handbook`,
         description: `Bago City College Handbook App`,
         display: "standalone",
         orientation: "portrait",

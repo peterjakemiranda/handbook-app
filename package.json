@@ -1,8 +1,8 @@
 {
   "name": "handbook-app",
   "version": "0.0.1",
-  "description": "SDSSU Handbook App",
-  "productName": "Handbook App",
+  "description": "Bago City College Handbook App",
+  "productName": "Bago City College Student Handbook",
   "author": "peter",
   "private": true,
   "scripts": {
