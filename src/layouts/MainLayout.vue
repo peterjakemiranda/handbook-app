@@ -56,6 +56,13 @@
 
             <q-item-section> Manage Accounts </q-item-section>
           </q-item>
+          <q-item to="/admin/monitoring" v-ripple exact v-if="isAdmin">
+            <q-item-section avatar>
+              <q-icon name="checklist" />
+            </q-item-section>
+
+            <q-item-section> Monitoring </q-item-section>
+          </q-item>
           <!-- <q-item to="/account" v-ripple exact>
             <q-item-section avatar>
               <q-icon name="person" />

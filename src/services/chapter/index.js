@@ -4,6 +4,7 @@ import items from "./items";
 import all from "./all";
 import show from "./show";
 import destroy from "./destroy";
+import answer from "./answer";
 
 export default {
   store,
@@ -12,4 +13,5 @@ export default {
   all,
   show,
   destroy,
+  answer,
 };

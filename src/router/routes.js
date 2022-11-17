@@ -93,6 +93,14 @@ const routes = [
           authorize: [Role.Admin],
         },
       },
+      {
+        path: "admin/monitoring",
+        component: () => import("src/pages/Admin/Monitoring/Index.vue"),
+        meta: {
+          auth: true,
+          authorize: [Role.Admin],
+        },
+      },
     ],
     meta: {
       auth: true,

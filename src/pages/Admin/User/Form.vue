@@ -1,12 +1,12 @@
 <template>
   <div class="q-pa-md">
     <div class="q-pa-md" style="max-width: 400px">
-      <h5 class="text-h5 text-bold q-my-md q-pb-lg">{{ id ? "Update" : "Create" }} User</h5>
+      <h5 class="text-h5 text-bold q-my-md q-pb-lg">{{ id ? "Update" : "Create" }} Admin User</h5>
       <q-form @submit="onSubmit" class="q-gutter-md">
         <q-input
           filled
           v-model="student_id"
-          label="Student ID *"
+          label="Username *"
         />
         <q-input
           filled

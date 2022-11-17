@@ -42,7 +42,7 @@
         <div v-html="section.content" class="text-body1"></div>
       </div>
       <q-btn v-if="article && article.prev_chapter" label="Previous Chapter" color="primary" @click="goToPrevChapter" class="q-mr-sm"/>
-      <q-btn :label="article && article.next_chapter ? 'Continue to Next Chapter' : 'Done'" color="primary" @click="showQuestion = true" v-if="article && article.next_chapter && questions.length"/>
+      <q-btn :label="article && article.next_chapter ? 'Continue to Next Chapter' : 'Done'" color="primary" @click="goToNextChapter" v-if="article && article.next_chapter && questions.length"/>
     </div>
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
       <q-btn fab icon="list" color="primary" @click="tableOfContents = true" />
@@ -228,11 +228,23 @@ export default defineComponent({
       this.showQuestion = false;
       this.answers = [];
       if(this.article.next_chapter) {
-        this.$router.push(`/article/${this.article.next_chapter}`);
+        chapterService
+          .answer(this.$route.params.id)
+          .then(() => {
+            this.$router.push(`/article/${this.article.next_chapter}`);
+          })
+          .catch((err) => {});
       }
     },
     goToPrevChapter() {
       this.$router.push(`/article/${this.article.prev_chapter}`);
+    },
+    goToNextChapter() {
+      if (this.article.is_answered) {
+        this.$router.push(`/article/${this.article.next_chapter}`);
+        return;
+      }
+      this.showQuestion = true
     }
   },
   watch: {

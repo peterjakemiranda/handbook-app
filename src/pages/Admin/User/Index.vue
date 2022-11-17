@@ -1,19 +1,11 @@
 <template>
   <div>
-<div
+    <div
       class="text-h5 q-mb-md q-p-5"
       style="padding: 10px"
     >
-      Manage Accounts
+      Student Accounts
     </div>
-    <!-- <div class="q-pa-md">
-    <q-btn
-      :to="`/admin/users/create`"
-      color="primary"
-      icon="add"
-      label="Create User"
-    />
-    </div> -->
     <q-list padding>
       <q-item>
         <q-item-section>
@@ -85,6 +77,73 @@
         :max="users.pagination.lastPage"
       />
     </div>
+    <div
+      class="text-h5 q-mb-md q-p-5"
+      style="padding: 10px"
+    >
+      Admin Accounts
+    </div>
+    <div style="padding: 10px">
+      <q-btn
+        :to="`/admin/users/create`"
+        color="primary"
+        icon="add"
+        label="Create Admin User"
+      />
+    </div>
+    <q-list padding>
+      <q-item>
+        <q-item-section>
+          <q-item-label lines="1">ID</q-item-label>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>First Name</q-item-label>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>Last Name</q-item-label>
+        </q-item-section>
+        <q-item-section side>
+          Actions
+        </q-item-section>
+      </q-item>
+      <q-item v-ripple v-for="user in admins" :key="user.id">
+        <q-item-section>
+          <q-item-label lines="1">{{ user.student_id }}</q-item-label>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>{{ user.first_name }}</q-item-label>
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>{{ user.last_name }}</q-item-label>
+        </q-item-section>
+        <q-item-section side>
+          <div class="q-gutter-sm">
+            <q-btn
+              flat
+              round
+              size="12px"
+              icon="edit"
+              :to="`/admin/users/${user.id}/edit`"
+            >
+              <q-tooltip anchor="top middle" self="bottom middle">
+                Edit
+              </q-tooltip>
+            </q-btn>
+            <!-- <q-btn
+              flat
+              round
+              size="12px"
+              icon="delete"
+              @click="remove(user)"
+            >
+              <q-tooltip anchor="top middle" self="bottom middle">
+                Delete
+              </q-tooltip>
+            </q-btn> -->
+          </div>
+        </q-item-section>
+      </q-item>
+    </q-list>
     <q-dialog 
       v-model="showViewModal"
     >
@@ -97,7 +156,7 @@
 
         <q-card-section style="max-height: 50vh" class="scroll">
           <q-list padding>
-            <q-item class="full-width">
+            <q-item class="full-width" v-if="viewing">
               <q-item-section>
                 <q-item-label>Student ID: <b>{{ viewing.student_id }}</b></q-item-label>
                 <q-item-label>Name: <b>{{ viewing.first_name }} {{ viewing.last_name }}</b></q-item-label>
@@ -107,6 +166,7 @@
                 <q-item-label>Gender: <b>{{ viewing.gender }}</b></q-item-label>
                 <q-item-label>Address: <b>{{ viewing.address }}</b></q-item-label>
                 <q-item-label>Mobile Number: <b>{{ viewing.cp_number }}</b></q-item-label>
+                <q-item-label>Chapter Accessed Count: <b>{{ viewing.chapter_access_count }}</b></q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
@@ -137,6 +197,7 @@ export default defineComponent({
       limit: 10,
       showViewModal: false,
       viewing: null,
+      admins: [],
     };
   },
   computed: {
@@ -146,6 +207,16 @@ export default defineComponent({
   },
   mounted() {
     this.fetch();
+
+    accountService
+      .admins()
+      .then((data) => {
+        this.admins = data;
+        this.loading = false;
+      })
+      .catch((errors) => {
+        this.loading = false;
+      });
   },
   methods: {
     fetch() {
