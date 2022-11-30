@@ -23,7 +23,7 @@
       />
     </div>
     <div v-else>
-      <div v-for="section in sections" :key="section.id" style="height: 450px">
+      <div v-for="section in sections" :key="section.id" style="min-height: 450px;padding-bottom: 20px;">
         <h6
           :id="`section-${section.id}`"
           class="text-h6 q-my-md"
