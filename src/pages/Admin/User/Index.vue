@@ -366,9 +366,17 @@ export default defineComponent({
         student_id: this.sending.id,
       }).then((data) => {
         this.closeSms();
+        this.$q.dialog({
+          title: "Success",
+          message: "Your message has been successfully sent!",
+        });
       })
       .catch((errors) => {
         this.loading = false;
+        this.$q.dialog({
+          title: "Error",
+          message: "An error has occured!",
+        });
       });
     },
     saveParentMobile() {
