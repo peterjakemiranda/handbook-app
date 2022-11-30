@@ -16,6 +16,11 @@ export const fetchUsers = ({ commit }, { users, pagination }) => {
   commit(types.FETCH_USERS, { users, pagination });
 };
 
+export const updateUser = ({ commit }, payload) => {
+  commit(types.UPDATE_USER, payload);
+};
+
+
 // Auth
 export const login = ({ commit }, tokenData) => {
   commit(types.LOGIN, tokenData);

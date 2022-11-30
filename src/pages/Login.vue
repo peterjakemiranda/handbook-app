@@ -96,7 +96,7 @@
 import { defineComponent } from "vue";
 import authService from "./../services/auth";
 import logoImage from "../assets/bago-logo.png";
-import bgImage from "../assets/bago-bg.png";
+import bgImage from "../assets/bago-bg.jpg";
 
 export default defineComponent({
   name: "Login",

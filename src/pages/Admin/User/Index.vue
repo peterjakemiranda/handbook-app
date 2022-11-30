@@ -44,17 +44,29 @@
                 View
               </q-tooltip>
             </q-btn>
-            <!-- <q-btn
+            <q-btn
               flat
               round
               size="12px"
-              icon="edit"
-              :to="`/admin/users/${user.id}/edit`"
+              icon="phone"
+              @click.prevent="showParentMobile(user)"
             >
               <q-tooltip anchor="top middle" self="bottom middle">
-                Edit
+                Update Parent Mobile Number
               </q-tooltip>
             </q-btn>
+            <q-btn
+              flat
+              round
+              size="12px"
+              icon="send"
+              @click.prevent="showSms(user)"
+            >
+              <q-tooltip anchor="top middle" self="bottom middle">
+                Send SMS
+              </q-tooltip>
+            </q-btn>
+            <!-- 
             <q-btn
               flat
               round
@@ -179,6 +191,74 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+    <q-dialog 
+      v-model="showSmsModal"
+    >
+    <q-card style="width: 700px; max-width: 80vw;">
+        <q-card-section>
+          <div class="text-h6">Send SMS to Parent</div>
+        </q-card-section>
+
+        <q-separator />
+        <div class="q-pa-md">
+          <q-form
+            @submit="onSubmit"
+            @reset="onReset"
+            class="q-gutter-md"
+          >
+            <q-input
+              filled
+              v-model="mobile"
+              label="Parent Mobile Number"
+              lazy-rules
+              :rules="[ val => val && val.length > 0 || 'Please type something']"
+            />
+            <q-input
+                v-model="message"
+                label="Your Message"
+                filled
+                type="textarea"
+              />
+          <q-card-actions align="right">
+            <q-btn flat label="Close" color="primary" @click="closeSms"/>
+            <q-btn label="Send" color="primary" v-close-popup @click="sendSms"/>
+          </q-card-actions>
+        </q-form>
+      </div>
+
+      </q-card>
+    </q-dialog>
+    <q-dialog 
+      v-model="showParentMobileModal"
+    >
+    <q-card style="width: 700px; max-width: 80vw;">
+        <q-card-section>
+          <div class="text-h6">Set Parent Mobile Number</div>
+        </q-card-section>
+
+        <q-separator />
+        <div class="q-pa-md">
+          <q-form
+            @submit="onSubmit"
+            @reset="onReset"
+            class="q-gutter-md"
+          >
+            <q-input
+              filled
+              v-model="mobile"
+              label="Parent Mobile Number"
+              lazy-rules
+              :rules="[ val => val && val.length > 0 || 'Please type something']"
+            />
+          <q-card-actions align="right">
+            <q-btn flat label="Close" color="primary" @click="closeSms"/>
+            <q-btn label="Save" color="primary" v-close-popup @click="saveParentMobile"/>
+          </q-card-actions>
+        </q-form>
+      </div>
+
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -186,6 +266,8 @@
 import { defineComponent } from "vue";
 import { mapGetters, mapMutations } from "vuex";
 import accountService from "../../../services/account";
+import smsService from "../../../services/sms";
+import store from "../../../store";
 
 export default defineComponent({
   name: "AdminUserIndex",
@@ -197,7 +279,12 @@ export default defineComponent({
       limit: 10,
       showViewModal: false,
       viewing: null,
+      showSmsModal: false,
+      showParentMobileModal: false,
+      sending: null,
       admins: [],
+      mobile: "",
+      message: "",
     };
   },
   computed: {
@@ -255,6 +342,47 @@ export default defineComponent({
     viewUser(user) {
       this.showViewModal = true;
       this.viewing = user;
+    },
+    showSms(user) {
+      this.showSmsModal = true;
+      this.sending = user;
+      this.mobile = user.parent_mobile;
+    },
+    showParentMobile(user) {
+      this.showParentMobileModal = true;
+      this.sending = user;
+      this.mobile = user.parent_mobile;
+    },
+    closeSms() {
+      this.showParentMobileModal = false;
+      this.showSmsModal = false;
+      this.sending = null;
+      this.mobile = null;
+    },
+    sendSms() {
+      smsService.send({
+        mobile: this.mobile,
+        message: this.message,
+        student_id: this.sending.id,
+      }).then((data) => {
+        this.closeSms();
+      })
+      .catch((errors) => {
+        this.loading = false;
+      });
+    },
+    saveParentMobile() {
+      smsService.update({
+        mobile: this.mobile,
+        student_id: this.sending.id,
+      }).then((data) => {
+        this.sending.parent_mobile = this.mobile;
+        store.dispatch('updateUser', this.sending);
+        this.closeSms();
+      })
+      .catch((errors) => {
+        this.loading = false;
+      });
     }
   },
   watch: {

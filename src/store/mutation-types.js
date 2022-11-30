@@ -2,6 +2,7 @@
 export const FETCH_USERS = "FETCH_USERS";
 export const GET_ACCOUNT = "GET_ACCOUNT";
 export const RESET_PROFILE = "RESET_PROFILE";
+export const UPDATE_USER = "UPDATE_USER";
 
 // Auth
 export const CHECK_AUTHENTICATION = "CHECK_AUTHENTICATION";
