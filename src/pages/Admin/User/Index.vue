@@ -221,7 +221,7 @@
               />
           <q-card-actions align="right">
             <q-btn flat label="Close" color="primary" @click="closeSms"/>
-            <q-btn label="Send" color="primary" v-close-popup @click="sendSms"/>
+            <q-btn label="Send" color="primary" @click="sendSms"/>
           </q-card-actions>
         </q-form>
       </div>
@@ -358,6 +358,7 @@ export default defineComponent({
       this.showSmsModal = false;
       this.sending = null;
       this.mobile = null;
+      this.message = null;
     },
     sendSms() {
       smsService.send({
@@ -365,11 +366,11 @@ export default defineComponent({
         message: this.message,
         student_id: this.sending.id,
       }).then((data) => {
-        this.closeSms();
         this.$q.dialog({
           title: "Success",
           message: "Your message has been successfully sent!",
         });
+        this.closeSms();
       })
       .catch((errors) => {
         this.loading = false;
