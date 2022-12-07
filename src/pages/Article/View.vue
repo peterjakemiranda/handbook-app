@@ -85,7 +85,7 @@
           <q-list padding>
             <q-item v-ripple v-for="(question, index) in questions" :key="question.id" class="full-width">
               <q-item-section>
-                <q-item-label lines="1">{{ question.question }}</q-item-label>
+                <q-item-label>{{ question.question }}</q-item-label>
                 <q-item-label caption>
                   <q-option-group
                     v-if="question"
