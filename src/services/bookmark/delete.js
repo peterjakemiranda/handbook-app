@@ -13,7 +13,7 @@ const failed = (errors, reject) => {
 export default (id) =>
   new Promise((resolve, reject) => {
     axios
-      .delete(`/api/bookmarks/${id}`)
+      .delete(`/bookmarks/${id}`)
       .then((response) => {
         success(response.data, resolve);
       })

@@ -10,7 +10,7 @@ const failed = (errors, reject) => {
 export default (params) =>
   new Promise((resolve, reject) => {
     axios
-      .post(`/api/update-parent-mobile`, params)
+      .post(`/update-parent-mobile`, params)
       .then((response) => {
         success(response.data, resolve);
       })

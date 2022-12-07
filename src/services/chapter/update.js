@@ -11,7 +11,7 @@ export default (id, data) =>
   new Promise((resolve, reject) => {
     axios
       .request({
-        url: `/api/chapters/${id}`,
+        url: `/chapters/${id}`,
         data,
         method: "put",
       })

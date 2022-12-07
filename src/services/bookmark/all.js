@@ -11,7 +11,7 @@ const failed = (error, reject) => reject(error);
 export default () =>
   new Promise((resolve, reject) => {
     axios
-      .get("/api/bookmarks")
+      .get("/bookmarks")
       .then((response) => {
         success(response, resolve);
       })

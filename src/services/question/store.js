@@ -11,7 +11,7 @@ export default (data) =>
   new Promise((resolve, reject) => {
     axios
       .request({
-        url: "/api/questions",
+        url: "/questions",
         data,
         method: "post",
       })

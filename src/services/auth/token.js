@@ -79,7 +79,7 @@ const getRefreshedToken = (request) => {
   store.commit(types.UPDATE_REFRESHING, true);
 
   return axios
-    .get("api/refresh")
+    .get("/refresh")
     .then((response) => onRefreshSuccess(response, request))
     .catch(onRefreshError);
 };

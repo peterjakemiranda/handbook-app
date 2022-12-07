@@ -10,7 +10,7 @@ const failed = (errors, reject) => {
 export default (id) =>
   new Promise((resolve, reject) => {
     axios
-      .get(`/api/questions/${id}`)
+      .get(`/questions/${id}`)
       .then((response) => {
         success(response.data, resolve);
       })

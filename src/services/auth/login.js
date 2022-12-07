@@ -26,7 +26,7 @@ const failed = (error, reject) => {
 export default (user) =>
   new Promise((resolve, reject) => {
     axios
-      .post("api/login", user)
+      .post("/login", user)
       .then((response) => {
         success(response.data, resolve);
       })

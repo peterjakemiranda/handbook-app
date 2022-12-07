@@ -16,7 +16,7 @@ const failed = (error, reject) => reject(error);
 export default (options = {}) =>
   new Promise((resolve, reject) => {
     axios
-      .get(helpers.buildUrl("/api/chapters", options))
+      .get(helpers.buildUrl("/chapters", options))
       .then((response) => {
         success(response, options, resolve);
       })

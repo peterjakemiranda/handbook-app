@@ -12,7 +12,7 @@ import { router } from "../router";
 // for each client)
 store.dispatch("checkAuthentication");
 
-axios.defaults.baseURL = "http://handbook-api.local";
+axios.defaults.baseURL = "https://bcc-handbook.vercel.app";
 axios.defaults.headers.common.Accept = "application/json";
 
 const logoutErrors = [

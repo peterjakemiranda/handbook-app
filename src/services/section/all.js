@@ -13,8 +13,8 @@ export default (chapter_id = null) =>
     axios
       .get(
         chapter_id === null
-          ? "/api/sections"
-          : `/api/sections?chapter_id=${chapter_id}`
+          ? "/sections"
+          : `/sections?chapter_id=${chapter_id}`
       )
       .then((response) => {
         success(response, resolve);

@@ -11,7 +11,7 @@ export default (data) =>
   new Promise((resolve, reject) => {
     axios
       .request({
-        url: "/api/sections",
+        url: "/sections",
         data,
         method: "post",
       })

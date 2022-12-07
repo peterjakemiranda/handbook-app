@@ -10,7 +10,7 @@ const failed = (errors, reject) => {
 export default (params) =>
   new Promise((resolve, reject) => {
     axios
-      .post(`/api/send-sms`, params)
+      .post(`/send-sms`, params)
       .then((response) => {
         success(response.data, resolve);
       })

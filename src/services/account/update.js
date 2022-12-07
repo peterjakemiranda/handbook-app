@@ -22,7 +22,7 @@ const failed = (error, reject) => {
 export default (user, id = null) =>
   new Promise((resolve, reject) => {
     axios
-      .put(id ? `api/account/${id}` : "api/account", user)
+      .put(id ? `/account/${id}` : "/account", user)
       .then((response) => {
         success(response.data, resolve);
       })

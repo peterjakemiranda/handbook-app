@@ -10,7 +10,7 @@ const failed = (errors, reject) => {
 export default (id, bookmark) =>
   new Promise((resolve, reject) => {
     axios
-      .post(`/api/bookmarks/${id}`, { bookmark })
+      .post(`/bookmarks/${id}`, { bookmark })
       .then((response) => {
         success(response.data, resolve);
       })

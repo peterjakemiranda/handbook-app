@@ -15,7 +15,7 @@ const failed = (error, reject) => {
 export default () =>
   new Promise((resolve, reject) => {
     axios
-      .get("api/account")
+      .get("/account")
       .then((response) => {
         success(response.data, resolve);
       })

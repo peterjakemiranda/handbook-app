@@ -11,7 +11,7 @@ const failed = (error, reject) => reject(error);
 export default (search = "") =>
   new Promise((resolve, reject) => {
     axios
-      .get(`/api/sections?search=${search}`)
+      .get(`/sections?search=${search}`)
       .then((response) => {
         success(response, resolve);
       })
